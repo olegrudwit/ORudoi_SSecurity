@@ -2,6 +2,7 @@ package com.orudoi.spring_security.repository;
 
 import com.orudoi.spring_security.model.Product;
 
+import java.util.List;
 import java.util.Map;
 
 public class ProductRepository {
@@ -9,7 +10,7 @@ public class ProductRepository {
         return null;
     }
 
-    public Map<Long, Product> getAll(){
+    public List<Product> getAll(){
         return null;
     }
 

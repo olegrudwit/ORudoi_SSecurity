@@ -1,4 +1,4 @@
-package com.orudoi.spring_security;
-
-public class SecurityConfiguration {
-}
+//package com.orudoi.spring_security;
+//
+//public class SecurityConfiguration {
+//}
