@@ -1,6 +1,6 @@
 package com.orudoi.spring_security.model;
 
-import javax.persistence.Table;
+//import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -10,18 +10,23 @@ import java.util.Objects;
  * @author Oleg Rudoi
  * @version 1.0 01 Mar 2023
  */
-@Table(name = "product")
 public class Product {
+
     private Long id;
     /* name of the product */
+
     private String name;
 
     /* price of the product */
     private Double cost;
 
-    public Product(String name, String cost) {
+    public Product() {
+    }
+
+    public Product(String name, Double cost) {
         this.name = name;
-        this.cost = Double.parseDouble(cost);
+        //this.cost = Double.parseDouble(cost);
+        this.cost = cost;
     }
 
     public Long getId() {
