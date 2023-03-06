@@ -1,6 +1,11 @@
-package com.orudoi.spring_security.model;
+package com.orudoi.spring_security.domain;
 
 //import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
 /**
@@ -10,8 +15,12 @@ import java.util.Objects;
  * @author Oleg Rudoi
  * @version 1.0 01 Mar 2023
  */
+@Entity
+//@Table(name = "products_table")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     /* name of the product */
 
