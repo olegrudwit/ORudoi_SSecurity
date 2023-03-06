@@ -18,15 +18,18 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<Product>> getAll() {
         List<Product> all = products.getAll();
+        System.out.println(all);
 
         return all != null
                 ? new ResponseEntity<>(all, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping({"id"})
+    @GetMapping("{id}")
     public ResponseEntity<Product> getByID(@PathVariable String id) {
         Product byId = products.getById(Long.parseLong(id));
+        //!!!
+        System.out.println(byId);
 
         return byId != null
                 ? new ResponseEntity<>(byId, HttpStatus.OK)
@@ -40,7 +43,7 @@ public class ProductController {
                 : new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
     }
 
-    @DeleteMapping({"id"})
+    @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable String id) {
         return products.delete(Long.parseLong(id))
                 ? new ResponseEntity<>(HttpStatus.OK)

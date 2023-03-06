@@ -1,15 +1,12 @@
 package com.orudoi.spring_security.repository;
 
 import com.orudoi.spring_security.model.Product;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
-//import org.springframework.data.repository.CrudRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ProductRepository {
@@ -17,9 +14,7 @@ public class ProductRepository {
 
     /* JDBC driver and URL */
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-   // private static final String DB_URL = "jdbc:mysql:/s_security_web_app/ss_db";
-    //localhost:3306
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/s_security_web_app/ss_db";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/security";
 
     /* database credentials */
     private static final String USER = "root";
@@ -42,23 +37,26 @@ public class ProductRepository {
     }
 
     public Product getById(Long id) {
-        Product product;
+        Product product = null;
         String sql = "SELECT \n" +
                 "`p`.`id` AS productID, \n" +
                 "`p`.`name` AS name, \n" +
-                "`p`.`cost` AS cost, \n" +
-                "FROM `products` AS `p`";
+                "`p`.`cost` AS cost \n" +
+                "FROM `products` AS `p` \n" +
+                "WHERE `p`.`id` = " + id + ";";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
 
-            Long productID = rs.getLong("productID");
-            String name = rs.getString("name");
-            Double cost = rs.getDouble("cost");
+            while (rs.next()) {
+                Long productID = rs.getLong("productID");
+                String name = rs.getString("name");
+                Double cost = rs.getDouble("cost");
 
-            product = new Product(name, cost);
-            product.setId(productID);
+                product = new Product(name, cost);
+                product.setId(productID);
+            }
 
             rs.close();
         } catch (SQLException e) {
@@ -74,8 +72,8 @@ public class ProductRepository {
         String sql = "SELECT \n" +
                 "`p`.`id` AS productID, \n" +
                 "`p`.`name` AS name, \n" +
-                "`p`.`cost` AS cost, \n" +
-                "FROM `ss_db.products` AS `p`";
+                "`p`.`cost` AS cost \n" +
+                "FROM `products` AS `p`";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              Statement stmt = conn.createStatement()) {
@@ -120,7 +118,7 @@ public class ProductRepository {
     }
 
     public boolean delete(Long id) {
-        String sql = "DELETE FROM products WHERE productID = ?";
+        String sql = "DELETE FROM `products` WHERE `id` = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
