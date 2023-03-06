@@ -1,4 +1,4 @@
-package com.orudoi.spring_security.model;
+package com.orudoi.spring_security.domain;
 
 //import javax.persistence.*;
 import java.util.Objects;
