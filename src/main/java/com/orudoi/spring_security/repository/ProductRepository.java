@@ -94,8 +94,6 @@ public class ProductRepository {
             e.printStackTrace();
         }
 
-        System.out.println(products);
-
         return !products.isEmpty()
                 ? products
                 : null;

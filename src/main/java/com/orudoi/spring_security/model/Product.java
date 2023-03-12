@@ -1,6 +1,5 @@
 package com.orudoi.spring_security.model;
 
-//import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -25,7 +24,6 @@ public class Product {
 
     public Product(String name, Double cost) {
         this.name = name;
-        //this.cost = Double.parseDouble(cost);
         this.cost = cost;
     }
 

@@ -1,0 +1,19 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: user
+    role: USER
+
+    application:
+      clients:
+        - username: admin
+          password: admin
+          roles: ADMIN
+        - username: user
+          password: user
+          roles: USER
+        - username: w
+          password: w
+          roles: WRITE
